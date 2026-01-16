@@ -1322,6 +1322,7 @@ footer:before {
     background: var(--bd-red);
 }
 
+/* Footer - Updated Layout */
 .footer-logo {
     display: flex;
     flex-direction: column;
@@ -1332,20 +1333,40 @@ footer:before {
 }
 
 .footer-logo-img {
-    height: 50px;
+    height: 70px;
     width: auto;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.footer-logo h3 {
-    margin: 0;
-    padding: 0;
-    font-size: 1.6rem;
-    color: white;
+.footer-section {
+    width: 100%;
+    text-align: center; /* Added this line */
 }
 
-.footer-logo h3:after {
-    display: none;
+.footer-section p {
+    color: #E0E0E0;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center; /* Ensure text is centered */
+}
+
+@media (min-width: 768px) {
+    .footer-section {
+        text-align: left; /* Only left-align on desktop */
+    }
+    
+    .footer-logo {
+        flex-direction: row;
+        justify-content: center; /* Center on mobile, but left on desktop */
+        text-align: left;
+    }
+    
+    .footer-section p {
+        text-align: left; /* Only left-align on desktop */
+    }
 }
 
 .footer-section p {
@@ -2316,16 +2337,12 @@ footer:before {
     <!-- Footer - Updated Row Layout -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="gonovote-white.png" alt="গণভোট লোগো" class="footer-logo-img">
-                    </div>
-                    <p>এই ওয়েবসাইটটি মোহাম্মদপুর মডেল এক্স-স্টুডেন্টস' অ্যাসোসিয়েশন কর্তৃক জনসচেতনতা বৃদ্ধির জন্য তৈরি করা হয়েছে। সরকারি বা রাজনৈতিক দলসমূহের সাথে এই ওয়েবসাইটের কোনো সম্পর্ক নেই।</p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
+<div class="footer-section">
+    <div class="footer-logo">
+        <img src="gonovote-white.png" alt="গণভোট লোগো" class="footer-logo-img">
+    </div>
+        <p><center>এই ওয়েবসাইটটি মোহাম্মদপুর মডেল এক্স-স্টুডেন্টস' অ্যাসোসিয়েশন কর্তৃক জনসচেতনতা বৃদ্ধির জন্য তৈরি করা হয়েছে। সরকারি বা রাজনৈতিক দলসমূহের সাথে এই ওয়েবসাইটের কোনো সম্পর্ক নেই।</center></p>
+</div>            <div class="footer-bottom">
                 <p>কপিরাইট ২০২৬ © মেক্সসা। সকল স্বত্ব সংরক্ষিত।</p>
                 <p class="developer-credit">কারিগরী সহায়তায়: <a href="https://github.com/raisularfin" target="_blank" class="developer-link">ইঞ্জিঃ রাইসুল আরেফিন ইয়ামিন</a></p>
             </div>
