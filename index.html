@@ -26,7 +26,6 @@
     --border-radius-lg: 15px;
     --transition: all 0.3s ease;
     
-    /* ফন্ট ভেরিয়েবল */
     --font-heading: 'Baloo Da 2', cursive;
     --font-body: 'Hind Siliguri', sans-serif;
     --font-special: 'SolaimanLipi', 'Noto Sans Bengali', serif;
@@ -1340,7 +1339,7 @@ footer:before {
 
 .footer-section {
     width: 100%;
-    text-align: center; /* Added this line */
+    text-align: center;
 }
 
 .footer-section p {
@@ -1350,22 +1349,22 @@ footer:before {
     font-family: var(--font-body);
     font-weight: 400;
     font-size: 1rem;
-    text-align: center; /* Ensure text is centered */
+    text-align: center;
 }
 
 @media (min-width: 768px) {
     .footer-section {
-        text-align: left; /* Only left-align on desktop */
+        text-align: left;
     }
     
     .footer-logo {
         flex-direction: row;
-        justify-content: center; /* Center on mobile, but left on desktop */
+        justify-content: center;
         text-align: left;
     }
     
     .footer-section p {
-        text-align: left; /* Only left-align on desktop */
+        text-align: left;
     }
 }
 
@@ -1452,6 +1451,81 @@ footer:before {
 .developer-link:hover {
     color: white;
     text-decoration: underline;
+}
+
+/* Mobile Menu Responsive Styles */
+@media (max-width: 767px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        background: var(--bd-green);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        border-radius: 0 0 10px 10px;
+        overflow: hidden;
+    }
+    
+    .nav-links.active {
+        display: flex !important;
+        animation: slideDown 0.3s ease;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-links a {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 18px 20px;
+        text-align: left;
+        border-bottom: none;
+        border-left: 4px solid transparent;
+    }
+    
+    .nav-links a:hover, .nav-links a.active {
+        border-left-color: var(--bd-red);
+        border-bottom: none;
+        background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .countdown-separator {
+        display: none;
+    }
+    
+    .countdown-item {
+        min-width: 22%;
+        margin-bottom: 5px;
+    }
+    
+    .comparison-container {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 /* Responsive Design */
@@ -1676,80 +1750,6 @@ footer:before {
     }
 }
 
-/* Mobile Menu Styles - CORRECTED */
-@media (max-width: 767px) {
-    .mobile-menu-toggle {
-        display: flex !important;
-    }
-    
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: var(--bd-green);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1000;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        border-radius: 0 0 10px 10px;
-    }
-    
-    .nav-links.active {
-        display: flex;
-        animation: slideDown 0.3s ease;
-    }
-    
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .nav-links li {
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .nav-links li:last-child {
-        border-bottom: none;
-    }
-    
-    .nav-links a {
-        flex-direction: row;
-        justify-content: flex-start;
-        padding: 18px 20px;
-        text-align: left;
-        border-bottom: none;
-        border-left: 4px solid transparent;
-    }
-    
-    .nav-links a:hover, .nav-links a.active {
-        border-left-color: var(--bd-red);
-        border-bottom: none;
-        background: rgba(255, 255, 255, 0.15);
-    }
-    
-    .countdown-separator {
-        display: none;
-    }
-    
-    .countdown-item {
-        min-width: 22%;
-        margin-bottom: 5px;
-    }
-    
-    .comparison-container {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
 /* Small Mobile Screens */
 @media (max-width: 480px) {
     .container {
@@ -1805,6 +1805,25 @@ footer:before {
     .footer-logo-img {
         height: 40px;
     }
+}
+
+/* Additional styles for countdown finished state */
+.countdown-finished {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--bd-green);
+    text-align: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    border: 2px solid var(--bd-gold);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
     </style>
     <!-- সুন্দর বাংলা ফন্ট -->
@@ -2358,7 +2377,7 @@ footer:before {
         <p><center>এই ওয়েবসাইটটি মোহাম্মদপুর মডেল এক্স-স্টুডেন্টস' অ্যাসোসিয়েশন কর্তৃক জনসচেতনতা বৃদ্ধির জন্য তৈরি করা হয়েছে। সরকারি বা রাজনৈতিক দলসমূহের সাথে এই ওয়েবসাইটের কোনো সম্পর্ক নেই।</center></p>
 </div>            <div class="footer-bottom">
                 <p>কপিরাইট ২০২৬ © মেক্সসা। সকল স্বত্ব সংরক্ষিত।</p>
-                <p class="developer-credit">কারিগরী সহায়তায়: <a href="https://github.com/raisularfin" target="_blank" class="developer-link">ইঞ্জিঃ রাইসুল আরেফিন ইয়ামিন</a></p>
+                <p class="developer-credit">কারিগরী সহায়তায়: <a href="https://facebook.com/yeamin.raisularfin" target="_blank" class="developer-link">ইঞ্জিঃ রাইসুল আরেফিন ইয়ামিন</a></p>
             </div>
         </div>
     </footer>
@@ -2366,6 +2385,8 @@ footer:before {
     <script>
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM loaded, initializing app...");
+    
     // Set up countdown timer
     initializeCountdown();
     
@@ -2381,8 +2402,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize visitor counter
     initializeVisitorCounter();
     
-    // Initialize mobile menu toggle (ONLY ONCE)
+    // Initialize mobile menu toggle
     initializeMobileMenu();
+    
+    console.log("App initialization complete.");
 });
 
 // Countdown Timer
@@ -2458,21 +2481,29 @@ function initializeNavigation() {
     });
 }
 
-// Mobile Menu Toggle - CORRECTED VERSION
+// Mobile Menu Toggle - Fixed Version
 function initializeMobileMenu() {
+    console.log("Initializing mobile menu...");
+    
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    if (!menuToggle || !navLinks) return;
+    console.log("Menu toggle element:", menuToggle);
+    console.log("Nav links element:", navLinks);
+    
+    if (!menuToggle || !navLinks) {
+        console.error("Menu elements not found!");
+        return;
+    }
     
     // Toggle mobile menu when button is clicked
     menuToggle.addEventListener('click', function(e) {
-        e.preventDefault();
+        console.log("Menu toggle clicked");
         e.stopPropagation();
         
         navLinks.classList.toggle('active');
         
-        // Change button icon
+        // Change button icon and text
         if (navLinks.classList.contains('active')) {
             this.innerHTML = '<i class="fas fa-times"></i> বন্ধ করুন';
         } else {
@@ -2483,6 +2514,7 @@ function initializeMobileMenu() {
     // Close menu when clicking on a nav link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', function() {
+            console.log("Nav link clicked, closing menu");
             navLinks.classList.remove('active');
             menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
         });
@@ -2491,6 +2523,7 @@ function initializeMobileMenu() {
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
         if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+            console.log("Clicked outside menu, closing");
             navLinks.classList.remove('active');
             menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
         }
@@ -2499,10 +2532,13 @@ function initializeMobileMenu() {
     // Close menu on escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            console.log("Escape key pressed, closing menu");
             navLinks.classList.remove('active');
             menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
         }
     });
+    
+    console.log("Mobile menu initialized successfully");
 }
 
 // Decision Tool Logic
@@ -2533,9 +2569,7 @@ function initializeDecisionTool() {
             
             // Enable calculate button if at least one question is answered
             const answeredQuestions = userAnswers.filter(answer => answer !== null).length;
-            if (answeredQuestions > 0) {
-                calculateButton.disabled = false;
-            }
+            calculateButton.disabled = answeredQuestions === 0;
         });
     });
     
@@ -2593,7 +2627,7 @@ function initializeDecisionTool() {
         const allAnswered = userAnswers.every(answer => answer !== null);
         
         if (!allAnswered) {
-            recommendationText = 'কিছু প্রশ্নের উত্তর দিন এবং আপনার সিদ্ধান্ত দেখুন';
+            recommendationText = 'আরও কিছু প্রশ্নের উত্তর দিন এবং আপনার সিদ্ধান্ত দেখুন';
         } else {
             // Count different types of answers
             const yesCount = userAnswers.filter(answer => answer === 1).length;
@@ -2604,12 +2638,10 @@ function initializeDecisionTool() {
                 recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি গণভোটের প্রস্তাবনাগুলোর পক্ষে। আপনার জন্য "হ্যাঁ" ভোট উপযুক্ত হবে।';
             } else if (noCount === 10) {
                 recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি গণভোটের প্রস্তাবনাগুলোর বিপক্ষে। আপনার জন্য "না" ভোট উপযুক্ত হবে।';
-            } else if (yesCount > 0 && noCount > 0) {
-                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি কিছু বিষয়ে সমর্থন এবং কিছু বিষয়ে বিরোধিতা করেছেন। আপনি চাইলে আরও তথ্য সংগ্রহ করে সিদ্ধান্ত নিতে পারেন।';
-            } else if (yesCount > 0 && unsureCount > 0 && noCount === 0) {
-                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি বেশিরভাগ বিষয়ে সমর্থন করেছেন, তবে কিছু বিষয়ে নিশ্চিত নন। আপনি "হ্যাঁ" ভোটের দিকে ঝুঁকছেন।';
-            } else if (noCount > 0 && unsureCount > 0 && yesCount === 0) {
-                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি বেশিরভাগ বিষয়ে বিরোধিতা করেছেন, তবে কিছু বিষয়ে নিশ্চিত নন। আপনি "না" ভোটের দিকে ঝুঁকছেন।';
+            } else if (yesCount > 5 && noCount <= 2) {
+                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি বেশিরভাগ বিষয়ে সমর্থন করেছেন। আপনার জন্য "হ্যাঁ" ভোট উপযুক্ত হবে।';
+            } else if (noCount > 5 && yesCount <= 2) {
+                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাছ্ছে যে আপনি বেশিরভাগ বিষয়ে বিরোধিতা করেছেন। আপনার জন্য "না" ভোট উপযুক্ত হবে।';
             } else {
                 recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি কিছু বিষয়ে সমর্থন এবং কিছু বিষয়ে বিরোধিতা করেছেন। আপনি চাইলে আরও তথ্য সংগ্রহ করে সিদ্ধান্ত নিতে পারেন।';
             }
@@ -2618,8 +2650,14 @@ function initializeDecisionTool() {
         document.getElementById('recommendation-text').textContent = recommendationText;
         
         // Scroll to results section
-        document.querySelector('.results-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        const resultsCard = document.querySelector('.results-card');
+        if (resultsCard) {
+            resultsCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     });
+    
+    // Initialize calculate button state
+    calculateButton.disabled = true;
     
     // Share buttons functionality
     shareButtons.forEach(button => {
@@ -2693,7 +2731,12 @@ function initializeVisitorCounter() {
     
     // Format number with Bengali-like formatting
     const formattedCount = visitorCount.toLocaleString('bn-BD');
-    document.getElementById('visitor-count').textContent = formattedCount;
+    
+    // Update visitor count in footer if element exists
+    const visitorCountElement = document.getElementById('visitor-count');
+    if (visitorCountElement) {
+        visitorCountElement.textContent = formattedCount;
+    }
     
     // Update last update time
     const now = new Date();
@@ -2706,10 +2749,15 @@ function initializeVisitorCounter() {
         minute: '2-digit'
     };
     const banglaDate = now.toLocaleDateString('bn-BD', options);
-    document.getElementById('last-update').textContent = banglaDate;
+    
+    // Update last update time in footer if element exists
+    const lastUpdateElement = document.getElementById('last-update');
+    if (lastUpdateElement) {
+        lastUpdateElement.textContent = banglaDate;
+    }
 }
 
-// Add CSS for countdown finished state
+// Add CSS for countdown finished state (injected via JS)
 const countdownStyle = document.createElement('style');
 countdownStyle.textContent = `
     .countdown-finished {
