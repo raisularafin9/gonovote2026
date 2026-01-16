@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -2432,7 +2431,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize visitor counter
     initializeVisitorCounter();
     
-    // Initialize mobile menu toggle
+    // Initialize mobile menu toggle (ONLY ONCE)
     initializeMobileMenu();
 });
 
@@ -2476,8 +2475,15 @@ function initializeNavigation() {
             e.preventDefault();
             
             // Close mobile menu if open
-            document.querySelector('.nav-links').classList.remove('active');
-            document.querySelector('.mobile-menu-toggle').innerHTML = '<i class="fas fa-bars"></i> মেনু';
+            const navMenu = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (navMenu && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                if (menuToggle) {
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
+                }
+            }
             
             // Get the target section ID from href
             const targetId = this.getAttribute('href');
@@ -2489,25 +2495,34 @@ function initializeNavigation() {
             
             // Hide all sections and show target
             sections.forEach(section => section.classList.remove('active'));
-            targetSection.classList.add('active');
-            
-            // Smooth scroll to section
-            window.scrollTo({
-                top: targetSection.offsetTop - 100,
-                behavior: 'smooth'
-            });
+            if (targetSection) {
+                targetSection.classList.add('active');
+                
+                // Smooth scroll to section
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 }
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle - CORRECTED VERSION
 function initializeMobileMenu() {
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    menuToggle.addEventListener('click', function() {
+    if (!menuToggle || !navLinks) return;
+    
+    // Toggle mobile menu when button is clicked
+    menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
         navLinks.classList.toggle('active');
         
+        // Change button icon
         if (navLinks.classList.contains('active')) {
             this.innerHTML = '<i class="fas fa-times"></i> বন্ধ করুন';
         } else {
@@ -2515,9 +2530,25 @@ function initializeMobileMenu() {
         }
     });
     
+    // Close menu when clicking on a nav link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
+        });
+    });
+    
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
         if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
+        }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
             menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
         }
@@ -2750,45 +2781,6 @@ countdownStyle.textContent = `
     }
 `;
 document.head.appendChild(countdownStyle);
-
-// Mobile Menu Toggle
-function initializeMobileMenu() {
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (!menuToggle || !navLinks) return;
-    
-    menuToggle.addEventListener('click', function(e) {
-        e.stopPropagation(); // Prevent event from bubbling up
-        navLinks.classList.toggle('active');
-        
-        // Change icon
-        const icon = this.querySelector('i');
-        if (navLinks.classList.contains('active')) {
-            icon.className = 'fas fa-times';
-            this.innerHTML = '<i class="fas fa-times"></i> বন্ধ করুন';
-        } else {
-            icon.className = 'fas fa-bars';
-            this.innerHTML = '<i class="fas fa-bars"></i> মেনু';
-        }
-    });
-    
-    // Close menu when clicking on a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function() {
-            navLinks.classList.remove('active');
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
-        });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
-        }
-    });
-}
     </script>
 </body>
 </html>
