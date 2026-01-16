@@ -1676,26 +1676,21 @@ footer:before {
     }
 }
 
-/* Mobile Menu Styles */
+/* Mobile menu styles should include: */
 @media (max-width: 767px) {
     .mobile-menu-toggle {
-        display: flex;
-    }
-    
-    nav {
-        padding: 0;
+        display: flex !important;
     }
     
     .nav-links {
         display: none;
-        flex-direction: column;
-        width: 100%;
-        background: var(--bd-green);
     }
     
     .nav-links.active {
         display: flex;
+        animation: slideDown 0.3s ease;
     }
+}
     
     .nav-links li {
         width: 100%;
@@ -2398,24 +2393,53 @@ footer:before {
         </section>
     </main>
     
-    <!-- Footer - Updated Row Layout -->
-    <footer>
-        <div class="container">
-<div class="footer-section">
-    <div class="footer-logo">
-        <img src="gonovote-white.png" alt="গণভোট লোগো" class="footer-logo-img">
-    </div>
-        <p><center>এই ওয়েবসাইটটি মোহাম্মদপুর মডেল এক্স-স্টুডেন্টস' অ্যাসোসিয়েশন কর্তৃক জনসচেতনতা বৃদ্ধির জন্য তৈরি করা হয়েছে। সরকারি বা রাজনৈতিক দলসমূহের সাথে এই ওয়েবসাইটের কোনো সম্পর্ক নেই।</center></p>
-</div>            <div class="footer-bottom">
+<!-- Footer - Updated Row Layout -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="gonovote-white.png" alt="গণভোট লোগো" class="footer-logo-img">
+                        <h3>গণভোট ২০২৬</h3>
+                    </div>
+                    <p><center>এই ওয়েবসাইটটি মোহাম্মদপুর মডেল এক্স-স্টুডেন্টস' অ্যাসোসিয়েশন কর্তৃক জনসচেতনতা বৃদ্ধির জন্য তৈরি করা হয়েছে। সরকারি বা রাজনৈতিক দলসমূহের সাথে এই ওয়েবসাইটের কোনো সম্পর্ক নেই।</center></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>যোগাযোগ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> মোহাম্মদপুর, ঢাকা, বাংলাদেশ</p>
+                    <p><i class="fas fa-envelope"></i> info@gonovote2026.org</p>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="visitor-info">
+                        <h3>সাইট ভিজিটর</h3>
+                        <div class="visitor-counter">
+                            <i class="fas fa-users"></i>
+                            <div class="counter-details">
+                                <div class="counter-label">মোট ভিজিটর</div>
+                                <div class="counter-number" id="visitor-count">1,850</div>
+                                <div class="counter-update" id="last-update">সর্বশেষ আপডেট: আজ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
                 <p>কপিরাইট ২০২৬ © মেক্সসা। সকল স্বত্ব সংরক্ষিত।</p>
                 <p class="developer-credit">কারিগরী সহায়তায়: <a href="https://github.com/raisularfin" target="_blank" class="developer-link">ইঞ্জিঃ রাইসুল আরেফিন ইয়ামিন</a></p>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <script>
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing app...');
+    
     // Set up countdown timer
     initializeCountdown();
     
@@ -2431,8 +2455,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize visitor counter
     initializeVisitorCounter();
     
-    // Initialize mobile menu toggle (ONLY ONCE)
+    // Initialize mobile menu toggle
     initializeMobileMenu();
+    
+    // Log for debugging
+    console.log('App initialized successfully');
 });
 
 // Countdown Timer
@@ -2470,9 +2497,14 @@ function initializeNavigation() {
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('.section');
     
+    console.log('Found nav links:', navLinks.length);
+    console.log('Found sections:', sections.length);
+    
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
+            
+            console.log('Nav link clicked:', this.getAttribute('href'));
             
             // Close mobile menu if open
             const navMenu = document.querySelector('.nav-links');
@@ -2508,19 +2540,29 @@ function initializeNavigation() {
     });
 }
 
-// Mobile Menu Toggle - CORRECTED VERSION
+// Mobile Menu Toggle - DEBUG VERSION
 function initializeMobileMenu() {
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    if (!menuToggle || !navLinks) return;
+    console.log('Mobile menu toggle element:', menuToggle);
+    console.log('Nav links element:', navLinks);
+    
+    if (!menuToggle || !navLinks) {
+        console.error('Mobile menu elements not found!');
+        return;
+    }
     
     // Toggle mobile menu when button is clicked
     menuToggle.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
         
+        console.log('Menu toggle clicked');
+        
         navLinks.classList.toggle('active');
+        
+        console.log('Menu active status:', navLinks.classList.contains('active'));
         
         // Change button icon
         if (navLinks.classList.contains('active')) {
@@ -2540,7 +2582,10 @@ function initializeMobileMenu() {
     
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+        const isClickInsideNav = e.target.closest('nav');
+        const isClickOnToggle = e.target.closest('.mobile-menu-toggle');
+        
+        if (!isClickInsideNav && !isClickOnToggle && navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
             menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
         }
@@ -2553,6 +2598,8 @@ function initializeMobileMenu() {
             menuToggle.innerHTML = '<i class="fas fa-bars"></i> মেনু';
         }
     });
+    
+    console.log('Mobile menu initialized');
 }
 
 // Decision Tool Logic
