@@ -1,0 +1,2647 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গণভোট ২০২৬ - সিদ্ধান্ত সহায়ক টুল</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+/* CSS Variables - Bangladesh Theme */
+:root {
+    --bd-red: #F42A41;
+    --bd-green: #006A4E;
+    --bd-dark-green: #00573F;
+    --bd-light-green: #008F6B;
+    --bd-gold: #FFD700;
+    --bd-light-red: #FF6B7F;
+    --bd-light: #F8F9FA;
+    --bd-dark: #1A1A1A;
+    --bd-gray: #6C757D;
+    --bd-light-gray: #E9ECEF;
+    
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --border-radius: 10px;
+    --border-radius-lg: 15px;
+    --transition: all 0.3s ease;
+    
+    /* ফন্ট ভেরিয়েবল */
+    --font-heading: 'Baloo Da 2', cursive;
+    --font-body: 'Hind Siliguri', sans-serif;
+    --font-special: 'SolaimanLipi', 'Noto Sans Bengali', serif;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.7;
+    color: var(--bd-dark);
+    background-color: #FFFFFF;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #FFFFFF;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+header {
+    background: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.site-logo {
+    height: 80px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo-text h1 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--bd-green);
+}
+
+.logo-text p {
+    font-family: var(--font-special);
+    font-size: 1rem;
+    color: var(--bd-gray);
+    font-weight: 500;
+}
+
+.countdown-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.countdown-container {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    padding: 20px;
+    color: var(--bd-dark);
+    box-shadow: var(--shadow);
+    border: 2px solid var(--bd-green);
+}
+
+.countdown-container h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--bd-green);
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.countdown-item {
+    background: white;
+    color: var(--bd-green);
+    border-radius: 10px;
+    padding: 15px 10px;
+    min-width: 75px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--bd-green);
+}
+
+.countdown-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.countdown-item span {
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+    font-family: var(--font-heading);
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    margin-top: 8px;
+    color: var(--bd-dark);
+    font-weight: 600;
+    font-family: var(--font-body);
+}
+
+.countdown-separator {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--bd-red);
+    padding: 0 5px;
+    font-family: var(--font-heading);
+}
+
+.countdown-date {
+    text-align: center;
+    font-weight: 600;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    color: var(--bd-red);
+}
+
+/* Bangladesh Banner */
+.bangladesh-banner {
+    background: var(--bd-green);
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
+    margin-top: 0;
+}
+
+.banner-content {
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.banner-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.banner-subtitle {
+    font-family: var(--font-special);
+    font-size: 1.3rem;
+    opacity: 0.95;
+}
+
+/* Navigation */
+nav {
+    background: var(--bd-green);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 106, 78, 0.3);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    overflow-x: auto;
+    justify-content: center;
+}
+
+.nav-links li {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+}
+
+.nav-links a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    border-bottom: 4px solid transparent;
+    font-family: var(--font-body);
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-bottom-color: var(--bd-red);
+}
+
+.nav-links a i {
+    font-size: 1.3rem;
+}
+
+/* Main Content */
+main {
+    padding: 40px 0;
+}
+
+.section {
+    display: none;
+    animation: fadeInUp 0.5s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: var(--bd-green);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--bd-red);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    position: relative;
+}
+
+h2 i {
+    font-size: 1.8rem;
+    color: var(--bd-red);
+}
+
+.section-subtitle {
+    color: var(--bd-gray);
+    margin-bottom: 35px;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    font-family: var(--font-body);
+    font-weight: 500;
+    padding-left: 40px;
+    position: relative;
+}
+
+.section-subtitle:before {
+    content: '»';
+    position: absolute;
+    left: 0;
+    color: var(--bd-red);
+    font-size: 1.5rem;
+}
+
+/* Proposal Cards */
+.proposals-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.proposal-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    padding: 25px;
+    box-shadow: var(--shadow);
+    display: flex;
+    transition: var(--transition);
+    border-left: 6px solid var(--bd-green);
+    border-top: 1px solid #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.proposal-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--bd-green);
+}
+
+.proposal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-left-color: var(--bd-red);
+}
+
+.proposal-number {
+    background: var(--bd-green);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-right: 25px;
+    font-family: var(--font-heading);
+    box-shadow: 0 4px 8px rgba(0, 106, 78, 0.3);
+    border: 3px solid white;
+}
+
+.proposal-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--bd-dark);
+    font-family: var(--font-body);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.proposal-desc {
+    color: var(--bd-gray);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.6;
+    font-family: var(--font-special);
+    font-weight: 400;
+    padding-right: 10px;
+}
+
+/* Vote Comparison */
+.vote-comparison {
+    margin-top: 50px;
+}
+
+.comparison-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.comparison-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.comparison-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.yes-card {
+    border-color: var(--bd-green);
+}
+
+.no-card {
+    border-color: var(--bd-red);
+}
+
+.comparison-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+}
+
+.yes-card:before {
+    background: var(--bd-green);
+}
+
+.no-card:before {
+    background: var(--bd-red);
+}
+
+.comparison-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--bd-light-gray);
+}
+
+.comparison-header i {
+    font-size: 2rem;
+}
+
+.yes-card .comparison-header i {
+    color: var(--bd-green);
+}
+
+.no-card .comparison-header i {
+    color: var(--bd-red);
+}
+
+.comparison-header h3 {
+    font-size: 1.6rem;
+    color: var(--bd-dark);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    border: none;
+    padding: 0;
+}
+
+.comparison-list {
+    list-style: none;
+}
+
+.comparison-list li {
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--bd-light-gray);
+    position: relative;
+    padding-left: 35px;
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+.comparison-list li:last-child {
+    border-bottom: none;
+}
+
+.comparison-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.yes-card .comparison-list li:before {
+    content: "✓";
+    color: var(--bd-green);
+    background: rgba(0, 106, 78, 0.1);
+}
+
+.no-card .comparison-list li:before {
+    content: "✗";
+    color: var(--bd-red);
+    background: rgba(244, 42, 65, 0.1);
+}
+
+/* Decision Tool */
+.decision-tool-container {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+}
+
+@media (max-width: 992px) {
+    .decision-tool-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.questions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.question-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--bd-light-gray);
+    position: relative;
+    overflow: hidden;
+}
+
+.question-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--bd-green);
+}
+
+.question-header {
+    display: flex;
+    margin-bottom: 25px;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.question-number {
+    background: var(--bd-green);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+    box-shadow: 0 4px 8px rgba(0, 106, 78, 0.3);
+    border: 3px solid white;
+}
+
+.question-text {
+    font-size: 1.2rem;
+    color: var(--bd-dark);
+    line-height: 1.6;
+    font-family: var(--font-body);
+    font-weight: 600;
+    flex: 1;
+}
+
+.answer-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.answer-btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: var(--transition);
+    flex: 1;
+    min-width: 140px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.answer-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.answer-btn:hover:before {
+    left: 100%;
+}
+
+.yes-btn {
+    background: var(--bd-green);
+    color: white;
+    border: 2px solid var(--bd-green);
+}
+
+.yes-btn:hover, .yes-btn.selected {
+    background: var(--bd-dark-green);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 106, 78, 0.3);
+}
+
+.no-btn {
+    background: var(--bd-red);
+    color: white;
+    border: 2px solid var(--bd-red);
+}
+
+.no-btn:hover, .no-btn.selected {
+    background: #D32F2F;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(244, 42, 65, 0.3);
+}
+
+.unsure-btn {
+    background: #6C757D;
+    color: white;
+    border: 2px solid #6C757D;
+}
+
+.unsure-btn:hover, .unsure-btn.selected {
+    background: #545B62;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(108, 117, 125, 0.3);
+}
+
+.tool-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.tool-btn {
+    padding: 16px 30px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex: 1;
+    box-shadow: var(--shadow);
+}
+
+.tool-btn.primary-btn {
+    background: var(--bd-green);
+    color: white;
+}
+
+.tool-btn {
+    background: #6C757D;
+    color: white;
+}
+
+.tool-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Results Sidebar */
+.results-sidebar {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.results-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--bd-light-gray);
+    position: relative;
+    overflow: hidden;
+}
+
+.results-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--bd-green);
+}
+
+.results-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    color: var(--bd-green);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.decision-meter {
+    margin-bottom: 30px;
+}
+
+.meter-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-family: var(--font-body);
+}
+
+.yes-label {
+    color: var(--bd-green);
+    font-size: 1.1rem;
+}
+
+.no-label {
+    color: var(--bd-red);
+    font-size: 1.1rem;
+}
+
+.percentage-label {
+    color: var(--bd-dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+}
+
+.meter-bar {
+    height: 30px;
+    background: #FFCDD2;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.meter-fill {
+    height: 100%;
+    background: var(--bd-green);
+    border-radius: 15px;
+    width: 0%;
+    transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.result-text {
+    background: #F8F9FA;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
+    border-left: 5px solid var(--bd-green);
+}
+
+.result-text p {
+    margin-bottom: 15px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    font-family: var(--font-body);
+    font-weight: 500;
+}
+
+.vote-support p {
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+#yes-support {
+    color: var(--bd-green);
+}
+
+#no-support {
+    color: var(--bd-red);
+}
+
+.recommendation {
+    background: #E3F2FD;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    border-left: 5px solid var(--bd-green);
+}
+
+.recommendation h4 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--bd-green);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.recommendation p {
+    font-family: var(--font-body);
+    font-weight: 500;
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.share-section h4 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--bd-green);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.social-share {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.share-btn {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.facebook-btn {
+    background: #1877F2;
+    color: white;
+}
+
+.twitter-btn {
+    background: #1DA1F2;
+    color: white;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: white;
+}
+
+.share-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Information Section */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.info-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+    border: 2px solid var(--bd-light-gray);
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--bd-green);
+}
+
+.info-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--bd-green);
+}
+
+.info-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--bd-green);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 25px;
+    box-shadow: 0 6px 15px rgba(0, 106, 78, 0.3);
+}
+
+.info-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--bd-green);
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.info-card p {
+    color: var(--bd-gray);
+    line-height: 1.7;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+}
+
+.reasons-section, .charter-section {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    padding: 35px;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+    border: 2px solid var(--bd-light-gray);
+    position: relative;
+    overflow: hidden;
+}
+
+.reasons-section:before, .charter-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--bd-green);
+}
+
+.reasons-section h3, .charter-section h3 {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    color: var(--bd-green);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.reasons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reason-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background: #F8F9FA;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    border-left: 5px solid var(--bd-green);
+}
+
+.reason-item:hover {
+    background: #F0F0F0;
+    transform: translateX(5px);
+}
+
+.reason-number {
+    background: var(--bd-green);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+    box-shadow: 0 4px 8px rgba(0, 106, 78, 0.3);
+}
+
+.reason-item p {
+    flex: 1;
+    line-height: 1.7;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--bd-dark);
+}
+
+.charter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.charter-item {
+    background: #E8F5E9;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border-left: 5px solid var(--bd-green);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--bd-dark-green);
+    font-weight: 500;
+    transition: var(--transition);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.charter-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    background: #D0EED3;
+}
+
+/* Documents Section */
+.documents-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.document-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 25px;
+    transition: var(--transition);
+    border: 2px solid var(--bd-light-gray);
+    position: relative;
+    overflow: hidden;
+}
+
+.document-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--bd-green);
+}
+
+.document-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--bd-green);
+}
+
+.document-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--bd-green);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+    box-shadow: 0 6px 15px rgba(0, 106, 78, 0.3);
+}
+
+.document-content {
+    flex: 1;
+}
+
+.document-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--bd-green);
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.document-content p {
+    color: var(--bd-gray);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+}
+
+.document-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.download-btn, .preview-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.download-btn {
+    background: var(--bd-green);
+    color: white;
+}
+
+.preview-btn {
+    background: #6C757D;
+    color: white;
+}
+
+.download-btn:hover, .preview-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* FAQ Section */
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.faq-item {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border: 2px solid var(--bd-light-gray);
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.faq-question {
+    padding: 25px 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+    background: #F8F9FA;
+}
+
+.faq-question:hover {
+    background: #E9ECEF;
+}
+
+.faq-question h3 {
+    font-size: 1.3rem;
+    color: var(--bd-dark);
+    margin: 0;
+    font-family: var(--font-body);
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.faq-question i {
+    transition: var(--transition);
+    color: var(--bd-green);
+    font-size: 1.3rem;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 30px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 30px 30px;
+    max-height: 1000px;
+}
+
+.faq-answer ol {
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+.faq-answer li {
+    margin-bottom: 12px;
+    line-height: 1.7;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--bd-gray);
+}
+
+.faq-answer p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--bd-gray);
+}
+
+/* Footer - Updated Row Layout */
+footer {
+    background: var(--bd-dark-green);
+    color: white;
+    padding: 40px 0 20px;
+    margin-top: 70px;
+    position: relative;
+    overflow: hidden;
+}
+
+footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--bd-green);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: white;
+    position: relative;
+    padding-bottom: 10px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.footer-section h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--bd-red);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.footer-logo h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.8rem;
+    color: white;
+}
+
+.footer-logo h3:after {
+    display: none;
+}
+
+.footer-section p {
+    color: #E0E0E0;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.05rem;
+}
+
+.visitor-counter {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.visitor-counter i {
+    font-size: 3rem;
+    color: var(--bd-red);
+    background: rgba(255, 255, 255, 0.1);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.counter-label {
+    font-size: 1rem;
+    color: #B0B0B0;
+    margin-bottom: 5px;
+    font-family: var(--font-body);
+    font-weight: 400;
+}
+
+.counter-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    font-family: var(--font-heading);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.counter-update {
+    font-size: 0.9rem;
+    color: #B0B0B0;
+    margin-top: 5px;
+    font-family: var(--font-body);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #B0B0B0;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    font-weight: 400;
+    width: 100%;
+}
+
+.developer-credit {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--bd-red);
+    font-family: var(--font-special);
+    font-style: italic;
+}
+
+.developer-link {
+    color: var(--bd-red);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.developer-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .decision-tool-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .results-sidebar {
+        position: static;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+    }
+    
+    .nav-links li {
+        min-width: auto;
+        flex: 1 0 50%;
+    }
+    
+    .banner-title {
+        font-size: 2rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo-wrapper {
+        justify-content: center;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-section {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-wrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .comparison-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .answer-options {
+        flex-direction: column;
+    }
+    
+    .answer-btn {
+        width: 100%;
+    }
+    
+    .tool-buttons {
+        flex-direction: column;
+    }
+    
+    .nav-links li {
+        flex: 1 0 100%;
+    }
+    
+    .info-grid, .documents-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .charter-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .banner-title {
+        font-size: 1.8rem;
+    }
+    
+    .banner-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .question-text {
+        font-size: 1.15rem;
+    }
+    
+    .document-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .document-icon {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .proposal-card {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .proposal-number {
+        margin-right: 0;
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+    
+    .question-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .question-number {
+        margin: 0 auto;
+    }
+    
+    .countdown-item {
+        min-width: 65px;
+        padding: 10px 5px;
+    }
+    
+    .countdown-item span {
+        font-size: 1.6rem;
+    }
+    
+    .banner-title {
+        font-size: 1.6rem;
+    }
+    
+    .site-logo {
+        height: 60px;
+    }
+    
+    .document-actions {
+        flex-direction: column;
+    }
+    
+    .download-btn, .preview-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+    </style>
+    <!-- সুন্দর বাংলা ফন্ট -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Tiro+Bangla&family=Baloo+Da+2:wght@400;500;600;700&family=SolaimanLipi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-wrapper">
+                        <img src="gonovote-logo.png" alt="গণভোট লোগো" class="site-logo">
+                    </div>
+                </div>
+                
+                <div class="countdown-section">
+                    <div class="countdown-container">
+                        <h3><i class="fas fa-clock"></i> গণভোটের সময়</h3>
+                        <div id="countdown">
+                            <div class="countdown-item">
+                                <span id="days">00</span>
+                                <div class="countdown-label">দিন</div>
+                            </div>
+                            <div class="countdown-separator">:</div>
+                            <div class="countdown-item">
+                                <span id="hours">00</span>
+                                <div class="countdown-label">ঘণ্টা</div>
+                            </div>
+                            <div class="countdown-separator">:</div>
+                            <div class="countdown-item">
+                                <span id="minutes">00</span>
+                                <div class="countdown-label">মিনিট</div>
+                            </div>
+                            <div class="countdown-separator">:</div>
+                            <div class="countdown-item">
+                                <span id="seconds">00</span>
+                                <div class="countdown-label">সেকেন্ড</div>
+                            </div>
+                        </div>
+                        <p class="countdown-date">১২ ফেব্রুয়ারি ২০২৬, সকাল ৮টা</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bangladesh Theme Banner -->
+    <div class="bangladesh-banner">
+        <div class="banner-content">
+            <h2 class="banner-title">আপনার ভোটে গড়ে উঠুক সুন্দর বাংলাদেশ</h2>
+            <p class="banner-subtitle">গণতন্ত্র, স্বাধীনতা ও ন্যায়ের ভিত্তিতে</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#part1" class="active"><i class="fas fa-info-circle"></i> গণভোট সম্পর্কে</a></li>
+                <li><a href="#part2"><i class="fas fa-tools"></i> সিদ্ধান্ত সহায়ক</a></li>
+                <li><a href="#part3"><i class="fas fa-file-alt"></i> গুরুত্বপূর্ণ তথ্য</a></li>
+                <li><a href="#documents"><i class="fas fa-file-pdf"></i> ডকুমেন্ট</a></li>
+                <li><a href="#faq"><i class="fas fa-question-circle"></i> প্রশ্নোত্তর</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Part 1: গণভোট সম্পর্কে জানুন -->
+        <section id="part1" class="section active">
+            <h2><i class="fas fa-info-circle"></i> গণভোট সম্পর্কে জানুন</h2>
+            
+            <div class="intro-text">
+                <p>গণভোটে সিদ্ধান্তের বিষয়গুলো নিচে দেওয়া হল। আপনি কি এমন বাংলাদেশ চান, যেখানে...</p>
+            </div>
+            
+            <div class="proposals-container">
+                <!-- ১ থেকে ১১ পর্যন্ত প্রস্তাবনা কার্ড -->
+                <div class="proposal-card">
+                    <div class="proposal-number">১</div>
+                    <div class="proposal-content">
+                        <h3>তত্ত্বাবধায়ক সরকার, নির্বাচন কমিশন ও পিএসসি গঠনে সরকারি দল ও বিরোধী দল একত্রে কাজ করবে</h3>
+                        <p class="proposal-desc">(বর্তমানে সরকারি দল এককভাবে এই প্রতিষ্ঠানগুলো গঠন করে। নতুন ব্যবস্থায় বিরোধী দলের সম্মতি ও অংশগ্রহণ প্রয়োজন হবে।)</p>
+                    </div>
+                </div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-number">২</div>
+                    <div class="proposal-content">
+                        <h3>সরকারি দল ইচ্ছেমতো সংবিধান সংশোধন করতে পারবে না</h3>
+                        <p class="proposal-desc">(সংবিধান সংশোধনের জন্য বিশেষ সংখ্যাগরিষ্ঠতার প্রয়োজন হবে এবং বিরোধী দলের মতামত বিবেচনায় নেওয়া হবে।)</p>
+                    </div>
+                </div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-number">৩</div>
+                    <div class="proposal-content">
+                        <h3>সংবিধানের গুরুত্বপূর্ণ পরিবর্তনের ক্ষেত্রে গণভোটের বিধান চালু হবে</h3>
+                        <p class="proposal-desc">(মৌলিক নীতি, মৌলিক অধিকার এবং রাষ্ট্রের মূল কাঠামো পরিবর্তনে সরাসরি জনগণের ভোট প্রয়োজন হবে।)</p>
+                    </div>
+                </div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-number">৪</div>
+                    <div class="proposal-content">
+                        <h3>বিরোধী দল থেকে ডেপুটি স্পিকার এবং গুরুত্বপূর্ণ সংসদীয় কমিটিসমূহের সভাপতি নির্বাচিত হবেন</h3>
+                        <p class="proposal-desc">(বর্তমানে সরকারি দল এই সব পদে নিজেদের সদস্য নিয়োগ করে। নতুন ব্যবস্থায় বিরোধী দল থেকে ডেপুটি স্পিকার ও কমিটি সভাপতি নির্বাচিত হবেন।)</p>
+                    </div>
+                </div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-number">৫</div>
+                    <div class="proposal-content">
+                        <h3>যত মেয়াদই হোক, কেউ সর্বোচ্চ ১০ বছরের বেশি প্রধানমন্ত্রী থাকতে পারবেন না</h3>
+                        <p class="proposal-desc">(একজন ব্যক্তি মোট ১০ বছরের বেশি (ধারাবাহিক বা বিরতি সহ) প্রধানমন্ত্রীর দায়িত্ব পালন করতে পারবেন না।)</p>
+                    </div>
+                </div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-number">৬</div>
+                    <div class="proposal-content">
+                        <h3>সংসদে নারীর প্রতিনিধিত্ব পর্যায়ক্রমে বাড়বে</h3>
+                        <p class="proposal-desc">(সংসদে নারী সদস্যের সংখ্যা ধাপে ধাপে বাড়ানো হবে এবং অন্তত ৩৩% আসন নারীদের জন্য সংরক্ষিত করার ব্যবস্থা করা হবে।)</p>
+                    </div>
+                </div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-number">৭</div>
+                    <div class="proposal-content">
+                        <h3>ক্ষমতার ভারসাম্য প্রতিষ্ঠার জন্য পার্লামেন্টে একটি উচ্চকক্ষ গঠিত হবে</h3>
+                        <p class="proposal-desc">(বর্তমান এককক্ষ বিশিষ্ট পার্লামেন্টের পরিবর্তে দ্বিকক্ষ বিশিষ্ট পার্লামেন্ট গঠন করা হবে যেখানে উচ্চকক্ষে প্রতিটি জেলা থেকে নির্বাচিত সদস্য থাকবেন।)</p>
+                    </div>
+                </div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-number">৮</div>
+                    <div class="proposal-content">
+                        <h3>দেশের বিচার ব্যবস্থা স্বাধীনভাবে কাজ করবে</h3>
+                        <p class="proposal-desc">(বিচার বিভাগের নিয়োগ, বদলি ও পদোন্নতি বিচার বিভাগ নিজেই করবে। নির্বাহী বিভাগ বিচার বিভাগে হস্তক্ষেপ করতে পারবে না।)</p>
+                    </div>
+                </div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-number">৯</div>
+                    <div class="proposal-content">
+                        <h3>আপনার মৌলিক অধিকারের সংখ্যা বাড়বে</h3>
+                        <p class="proposal-desc">(ইন্টারনেট সেবা কখনো বন্ধ করা যাবে না, প্রাইভেসির অধিকার, ডিজিটাল অধিকারসহ নতুন অধিকার সংবিধানে যুক্ত হবে।)</p>
+                    </div>
+                </div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-number">১০</div>
+                    <div class="proposal-content">
+                        <h3>দণ্ডপ্রাপ্ত অপরাধীকে রাষ্ট্রপতি ইচ্ছেমতো ক্ষমা করতে পারবেন না</h3>
+                        <p class="proposal-desc">(রাষ্ট্রপতির ক্ষমা প্রদর্শনের ক্ষমতা সীমিত করা হবে এবং বিশেষ ক্ষেত্রে আদালতের সুপারিশ প্রয়োজন হবে।)</p>
+                    </div>
+                </div>
+                
+                <div class="proposal-card">
+                    <div class="proposal-number">১১</div>
+                    <div class="proposal-content">
+                        <h3>রাষ্ট্রপতি ও প্রধানমন্ত্রীর ক্ষমতার মধ্যে ভারসাম্য থাকবে</h3>
+                        <p class="proposal-desc">(বর্তমানে প্রধানমন্ত্রীর হাতে ক্ষমতা কেন্দ্রীভূত। নতুন ব্যবস্থায় রাষ্ট্রপতির কিছু ক্ষমতা ফিরিয়ে আনা হবে যাতে ক্ষমতার ভারসাম্য প্রতিষ্ঠিত হয়।)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="vote-comparison">
+                <div class="comparison-container">
+                    <div class="comparison-card yes-card">
+                        <div class="comparison-header">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>হ্যাঁ জয়ী হলে</h3>
+                        </div>
+                        <ul class="comparison-list">
+                            <li>রাজনৈতিক দলগুলো একত্রে কাজ করে তত্ত্বাবধায়ক সরকার, নির্বাচন কমিশন ও পিএসসি গঠন করবে</li>
+                            <li>সরকারি দল ইচ্ছেমতো সংবিধান সংশোধন করতে পারবে না</li>
+                            <li>গুরুত্বপূর্ণ সাংবিধানিক পরিবর্তনে গণভোটের বিধান চালু হবে</li>
+                            <li>বিরোধী দল থেকে ডেপুটি স্পিকার ও সংসদীয় কমিটির সভাপতি নির্বাচিত হবেন</li>
+                            <li>প্রধানমন্ত্রী সর্বোচ্চ ১০ বছরের বেশি থাকতে পারবেন না</li>
+                            <li>বিচার ব্যবস্থা স্বাধীনভাবে কাজ করবে</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card no-card">
+                        <div class="comparison-header">
+                            <i class="fas fa-times-circle"></i>
+                            <h3>না জয়ী হলে</h3>
+                        </div>
+                        <ul class="comparison-list">
+                            <li>বর্তমান ব্যবস্থাই বহাল থাকবে</li>
+                            <li>সরকারি দল সংবিধান সংশোধনের ক্ষেত্রে একক কর্তৃত্ব বজায় রাখবে</li>
+                            <li>গুরুত্বপূর্ণ সাংবিধানিক পরিবর্তনে গণভোটের প্রয়োজন হবে না</li>
+                            <li>বিরোধী দলের জন্য ডেপুটি স্পিকার ও কমিটি সভাপতির পদ সংরক্ষিত থাকবে না</li>
+                            <li>প্রধানমন্ত্রীর মেয়াদের উপর সাংবিধানিক সীমা আরোপিত হবে না</li>
+                            <li>বর্তমান বিচার ব্যবস্থা চলমান থাকবে</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 2: সিদ্ধান্ত সহায়ক টুল -->
+        <section id="part2" class="section">
+            <h2><i class="fas fa-tools"></i> সিদ্ধান্ত সহায়ক টুল</h2>
+            <p class="section-subtitle">নিচের বিষয়গুলো পড়ে আপনার সমর্থন বা বিরোধিতা নির্দেশ করুন</p>
+            
+            <div class="decision-tool-container">
+                <div class="questions-container">
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">১</span>
+                            <h3 class="question-text">আপনি কি মনে করেন সরকারি দল ও বিরোধী দলের একত্রে কাজ করা উচিত তত্ত্বাবধায়ক সরকার গঠনের জন্য?</h3>
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn yes-btn" data-question="1" data-value="1">সমর্থন করি</button>
+                            <button class="answer-btn unsure-btn" data-question="1" data-value="0.5">নিশ্চিত নয়</button>
+                            <button class="answer-btn no-btn" data-question="1" data-value="0">সমর্থন করি না</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">২</span>
+                            <h3 class="question-text">সংবিধান সংশোধনের ক্ষেত্রে কি সরকারি দলের একক কর্তৃত্ব সীমিত করা উচিত?</h3>
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn yes-btn" data-question="2" data-value="1">সমর্থন করি</button>
+                            <button class="answer-btn unsure-btn" data-question="2" data-value="0.5">নিশ্চিত নয়</button>
+                            <button class="answer-btn no-btn" data-question="2" data-value="0">সমর্থন করি না</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">৩</span>
+                            <h3 class="question-text">গুরুত্বপূর্ণ সাংবিধানিক পরিবর্তনের ক্ষেত্রে গণভোটের বিধান চালু করা কি প্রয়োজন?</h3>
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn yes-btn" data-question="3" data-value="1">সমর্থন করি</button>
+                            <button class="answer-btn unsure-btn" data-question="3" data-value="0.5">নিশ্চিত নয়</button>
+                            <button class="answer-btn no-btn" data-question="3" data-value="0">সমর্থন করি না</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">৪</span>
+                            <h3 class="question-text">বিরোধী দল থেকে ডেপুটি স্পিকার নির্বাচন করা কি গণতন্ত্রের জন্য গুরুত্বপূর্ণ?</h3>
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn yes-btn" data-question="4" data-value="1">সমর্থন করি</button>
+                            <button class="answer-btn unsure-btn" data-question="4" data-value="0.5">নিশ্চিত নয়</button>
+                            <button class="answer-btn no-btn" data-question="4" data-value="0">সমর্থন করি না</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">৫</span>
+                            <h3 class="question-text">প্রধানমন্ত্রীর মেয়াদের উপর সাংবিধানিক সীমা আরোপ করা কি প্রয়োজন?</h3>
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn yes-btn" data-question="5" data-value="1">সমর্থন করি</button>
+                            <button class="answer-btn unsure-btn" data-question="5" data-value="0.5">নিশ্চিত নয়</button>
+                            <button class="answer-btn no-btn" data-question="5" data-value="0">সমর্থন করি না</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">৬</span>
+                            <h3 class="question-text">সংসদে নারীর প্রতিনিধিত্ব বাড়ানো কি জরুরি?</h3>
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn yes-btn" data-question="6" data-value="1">সমর্থন করি</button>
+                            <button class="answer-btn unsure-btn" data-question="6" data-value="0.5">নিশ্চিত নয়</button>
+                            <button class="answer-btn no-btn" data-question="6" data-value="0">সমর্থন করি না</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">৭</span>
+                            <h3 class="question-text">পার্লামেন্টে উচ্চকক্ষ গঠন কি ক্ষমতার ভারসাম্য প্রতিষ্ঠা করবে?</h3>
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn yes-btn" data-question="7" data-value="1">সমর্থন করি</button>
+                            <button class="answer-btn unsure-btn" data-question="7" data-value="0.5">নিশ্চিত নয়</button>
+                            <button class="answer-btn no-btn" data-question="7" data-value="0">সমর্থন করি না</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">৮</span>
+                            <h3 class="question-text">বিচার ব্যবস্থার স্বাধীনতা কি নিশ্চিত করা প্রয়োজন?</h3>
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn yes-btn" data-question="8" data-value="1">সমর্থন করি</button>
+                            <button class="answer-btn unsure-btn" data-question="8" data-value="0.5">নিশ্চিত নয়</button>
+                            <button class="answer-btn no-btn" data-question="8" data-value="0">সমর্থন করি না</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">৯</span>
+                            <h3 class="question-text">ইন্টারনেট বন্ধ না করার মতো নতুন মৌলিক অধিকার সংবিধানে যুক্ত করা কি প্রয়োজন?</h3>
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn yes-btn" data-question="9" data-value="1">সমর্থন করি</button>
+                            <button class="answer-btn unsure-btn" data-question="9" data-value="0.5">নিশ্চিত নয়</button>
+                            <button class="answer-btn no-btn" data-question="9" data-value="0">সমর্থন করি না</button>
+                        </div>
+                    </div>
+                    
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">১০</span>
+                            <h3 class="question-text">রাষ্ট্রপতির ক্ষমা প্রদর্শনের ক্ষমতা সীমিত করা কি উচিত?</h3>
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn yes-btn" data-question="10" data-value="1">সমর্থন করি</button>
+                            <button class="answer-btn unsure-btn" data-question="10" data-value="0.5">নিশ্চিত নয়</button>
+                            <button class="answer-btn no-btn" data-question="10" data-value="0">সমর্থন করি না</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-buttons">
+                        <button id="reset-btn" class="tool-btn"><i class="fas fa-redo"></i> পুনরায় শুরু করুন</button>
+                        <button id="calculate-btn" class="tool-btn primary-btn"><i class="fas fa-calculator"></i> সিদ্ধান্ত দেখুন</button>
+                    </div>
+                </div>
+                
+                <div class="results-sidebar">
+                    <div class="results-card">
+                        <h3><i class="fas fa-chart-pie"></i> আপনার সিদ্ধান্ত</h3>
+                        <div class="decision-meter">
+                            <div class="meter-label">
+                                <span class="yes-label">হ্যাঁ</span>
+                                <span class="percentage-label" id="yes-percentage">0%</span>
+                                <span class="no-label">না</span>
+                            </div>
+                            <div class="meter-bar">
+                                <div class="meter-fill" id="yes-fill"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-text">
+                            <p id="decision-text">প্রশ্নের উত্তর দিন এবং আপনার সিদ্ধান্ত দেখুন</p>
+                            <div class="vote-support">
+                                <p id="yes-support">আপনি 0% হ্যাঁ ভোটের পক্ষে</p>
+                                <p id="no-support">আপনি 0% না ভোটের পক্ষে</p>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation">
+                            <h4><i class="fas fa-lightbulb"></i> আমাদের সুপারিশ:</h4>
+                            <p id="recommendation-text">উপরের সবগুলো প্রশ্নের উত্তর দিন এবং আপনার সিদ্ধান্ত দেখুন</p>
+                        </div>
+                        
+                        <div class="share-section">
+                            <h4><i class="fas fa-share-alt"></i> ফলাফল শেয়ার করুন</h4>
+                            <div class="social-share">
+                                <button class="share-btn facebook-btn"><i class="fab fa-facebook-f"></i> Facebook</button>
+                                <button class="share-btn twitter-btn"><i class="fab fa-twitter"></i> Twitter</button>
+                                <button class="share-btn whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 3: গণভোট সম্পর্কে গুরুত্বপূর্ণ তথ্য -->
+        <section id="part3" class="section">
+            <h2><i class="fas fa-file-alt"></i> গণভোট সম্পর্কে গুরুত্বপূর্ণ তথ্য</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>কখন অনুষ্ঠিত হবে?</h3>
+                    <p>গণভোট ২০২৬ সালের ফেব্রুয়ারির ১২ তারিখে অনুষ্ঠিত হবে। ভোটগ্রহণ সকাল ৮টা থেকে শুরু হয়ে সন্ধ্যা ৬টা পর্যন্ত চলবে।</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3>কে ভোট দিতে পারবেন?</h3>
+                    <p>১৮ বছর বা তার বেশি বয়সের সকল নাগরিক যাদের জাতীয় পরিচয়পত্র আছে, তারা ভোট দিতে পারবেন। ভোটার তালিকায় আপনার নাম থাকতে হবে।</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-vote-yea"></i>
+                    </div>
+                    <h3>গণভোট কী?</h3>
+                    <p>গণভোট হল সরাসরি গণতন্ত্রের একটি পদ্ধতি যেখানে জনগণ সরাসরি কোনো গুরুত্বপূর্ণ বিষয়ে সিদ্ধান্ত নেয়। এটি সংসদীয় সিদ্ধান্তের বিকল্প ব্যবস্থা।</p>
+                </div>
+            </div>
+            
+            <div class="reasons-section">
+                <h3><i class="fas fa-question-circle"></i> আপনি কেনো গণভোটে অংশ নেবেন?</h3>
+                <div class="reasons-list">
+                    <div class="reason-item">
+                        <span class="reason-number">১</span>
+                        <p>দেশের মালিকদের একজন হিসাবে আপনার ইচ্ছেরও যে মূল্য আছে তা নিশ্চিত করা</p>
+                    </div>
+                    <div class="reason-item">
+                        <span class="reason-number">২</span>
+                        <p>জুলাই গণঅভ্যূত্থানের আকাঙ্খা বাস্তবায়ন করা</p>
+                    </div>
+                    <div class="reason-item">
+                        <span class="reason-number">৩</span>
+                        <p>আপনার নির্বাচিত প্রতিনিধিরা যাতে আপনার ওপর ছড়ি ঘোরাতে না পারে সেই ব্যবস্থা করা</p>
+                    </div>
+                    <div class="reason-item">
+                        <span class="reason-number">৪</span>
+                        <p>সামগ্রিকভাবে একটি জবাবদিহিমূলক রাষ্ট্রব্যবস্থা প্রতিষ্ঠা করা</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="charter-section">
+                <h3><i class="fas fa-file-contract"></i> জুলাই জাতীয় সনদের গুরুত্বপূর্ণ সুপারিশ কী কী?</h3>
+                <div class="charter-grid">
+                    <div class="charter-item">ক্ষমতার ভারসাম্য সৃষ্টি</div>
+                    <div class="charter-item">আর কেউ যাতে শেখ হাসিনার মতো ফ্যাসিবাদী না হতে পারে তা নিশ্চিত করা</div>
+                    <div class="charter-item">ক্ষমতার ভারসাম্য সৃষ্টির জন্য দ্বিকক্ষ বিশিষ্ট আইনসভা চালুর মাধ্যমে একটি উচ্চকক্ষ গঠন করা</div>
+                    <div class="charter-item">কোনও ব্যাক্তি যেন তার সমগ্র জীবনে ১০ বছরের বেশি প্রধানমন্ত্রী না থাকতে পারে সেই ব্যবস্থা করা</div>
+                    <div class="charter-item">তত্ত্বাবধায়ক সরকার, নির্বাচন কমিশন, সরকারি কর্মকমিশন (পিএসসি) ইত্যাদি যাতে সরকারি দল ও বিরোধী দল একসঙ্গে গঠন করতে পারে</div>
+                    <div class="charter-item">আইনসভার স্পিকার সরকারি দল থেকে এবং ডেপুটি স্পিকার বিরোধী দল থেকে নির্বাচিত করার বিধান চালু করা</div>
+                    <div class="charter-item">গুরুত্বপূর্ণ সংসদীয় কমিটিসমূহের সভাপতি বিরোধী দল থেকে মনোনীত করা</div>
+                    <div class="charter-item">বিচার বিভাগকে স্বাধীন ও জনবান্ধব করা</div>
+                    <div class="charter-item">হাইকোর্টের বেঞ্চ ঢাকার বাইরে বিভাগীয় শহরগুলোতে স্থাপন করা</div>
+                    <div class="charter-item">উপজেলায় আদালত ব্যবস্থা পুনরায় চালু করা</div>
+                    <div class="charter-item">বাংলাকে রাষ্ট্রভাষার মর্যাদা দেয়ার পাশাপাশি অন্যান্য ভাষাকেও রাষ্ট্রীয় স্বীকৃতি দেয়া</div>
+                    <div class="charter-item">নাগরিকদের মৌলিক অধিকারের পরিধি বৃদ্ধি করা (যেমন সরকার চাইলেই যেন কখনও ইন্টারনেট বন্ধ করতে না পারে)</div>
+                    <div class="charter-item">রাষ্ট্রপতি চাইলেই যেন কোনও দন্ডপ্রাপ্ত অপরাধীকে ক্ষতিগ্রস্ত পরিবারের সম্মতি ছাড়া ক্ষমা করতে না পারে</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Documents Section -->
+        <section id="documents" class="section">
+            <h2><i class="fas fa-file-pdf"></i> গুরুত্বপূর্ণ ডকুমেন্ট</h2>
+            <p class="section-subtitle">গণভোট সম্পর্কিত প্রয়োজনীয় ডকুমেন্ট ডাউনলোড করুন</p>
+            
+            <div class="documents-container">
+                <div class="document-card">
+                    <div class="document-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="document-content">
+                        <h3>জুলাই জাতীয় সনদ ২০২৫</h3>
+                        <p>গণঅভ্যুত্থানের আকাঙ্ক্ষা বাস্তবায়নের রূপরেখা এবং রাষ্ট্র সংস্কারের পূর্ণাঙ্গ প্রস্তাবনা</p>
+                        <div class="document-actions">
+                            <a href="july-national-charter.pdf" class="download-btn" download>
+                                <i class="fas fa-download"></i> PDF ডাউনলোড
+                            </a>
+                            <button class="preview-btn">
+                                <i class="fas fa-eye"></i> প্রিভিউ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="document-card">
+                    <div class="document-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <div class="document-content">
+                        <h3>গণভোট অধ্যাদেশ ২০২৬</h3>
+                        <p>গণভোট অনুষ্ঠান, ভোটগ্রহণ প্রক্রিয়া এবং ফলাফল ঘোষণার আইনি কাঠামো ও বিধিমালা</p>
+                        <div class="document-actions">
+                            <a href="referendum-ordinance.pdf" class="download-btn" download>
+                                <i class="fas fa-download"></i> PDF ডাউনলোড
+                            </a>
+                            <button class="preview-btn">
+                                <i class="fas fa-eye"></i> প্রিভিউ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <h2><i class="fas fa-question-circle"></i> প্রশ্নোত্তর (FAQs)</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>গণভোট কি?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>গণভোটও এক ধরনের ভোট বা নির্বাচন</li>
+                            <li>অন্যান্য নির্বাচনে প্রার্থী থাকে, কিন্তু গনভোটে কোনও প্রার্থী নেই</li>
+                            <li>গণভোটে ভোট দিতে হয় কিছু প্রস্তাবের পক্ষে অথবা বিপক্ষে "হ্যাঁ" অথবা "না" ভোট প্রদানের মাধ্যমে</li>
+                            <li>গণভোটে "হ্যাঁ" বিজয়ী হলে রাষ্ট্র চালানোর পদ্ধতির গুরুত্বপূর্ণ পরিবর্তন ঘটে</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>গণভোট ২০২৬ কেন হচ্ছে?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>২০২৪ সালের ৫ই আগস্ট জনগণ যে আকাঙ্ক্ষা নিয়ে গনঅভ্যুত্থান ঘটিয়েছিল সেটা পূরণের রূপরেখা</p>
+                        <p>গণঅভ্যূত্থানের আকাঙ্খায় প্রণীত "জুলাই জাতীয় সনদ ২০২৫" এর গুরুত্বপূর্ণ সুপারিশসমূহ বাস্তবায়নের পদ্ধতি</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>জুলাই জাতীয় সনদ ২০২৫ এ কী আছে?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>রাষ্ট্রের সংস্কার ও চরিত্র বদলের জন্য অনেকগুলো গুরুত্বপূর্ণ সুপারিশ রয়েছে, যা বিভিন্ন রাজনৈতিক দল ও জোটের দীর্ঘদিনের আলাপ-আলোচনার মধ্য দিয়ে চুড়ান্ত করা হয়।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer - Updated Row Layout -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="gonovote-logo.png" alt="গণভোট লোগো" class="footer-logo-img">
+                        <h3>গণভোট ২০২৬</h3>
+                    </div>
+                    <p>এই ওয়েবসাইটটি মোহাম্মদপুর মডেল এক্স-স্টুডেন্টস' অ্যাসোসিয়েশন কর্তৃক জনসচেতনতা বৃদ্ধির জন্য তৈরি করা হয়েছে। সরকারি বা রাজনৈতিক দলসমূহের সাথে এই ওয়েবসাইটের কোনো সম্পর্ক নেই।</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>পরিদর্শনকারী</h3>
+                    <div class="visitor-counter">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <p class="counter-label">সর্বমোট ভিজিটর সংখ্যা</p>
+                            <p class="counter-number" id="visitor-count">১,৫০০</p>
+                            <p class="counter-update">সর্বশেষ আপডেট: <span id="last-update">আজ</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>কপিরাইট ২০২৬ © মেক্সসা। সকল স্বত্ব সংরক্ষিত।</p>
+                <p class="developer-credit">কারিগরী সহায়তায়: <a href="https://github.com/raisularfin" target="_blank" class="developer-link">ইঞ্জিঃ রাইসুল আরেফিন ইয়ামিন</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+// Initialize the application when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up countdown timer
+    initializeCountdown();
+    
+    // Set up navigation
+    initializeNavigation();
+    
+    // Set up decision tool
+    initializeDecisionTool();
+    
+    // Set up FAQ accordion
+    initializeFAQ();
+    
+    // Initialize visitor counter
+    initializeVisitorCounter();
+    
+    // Initialize document preview buttons
+    initializeDocumentPreview();
+});
+
+// Countdown Timer
+function initializeCountdown() {
+    // Set the target date: 12th February 2026, 8:00 AM (Bangladesh time)
+    const targetDate = new Date('February 12, 2026 08:00:00 GMT+0600').getTime();
+    
+    // Update the countdown every second
+    const countdownInterval = setInterval(function() {
+        const now = new Date().getTime();
+        const timeRemaining = targetDate - now;
+        
+        // Calculate days, hours, minutes, seconds
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+        
+        // Display the countdown
+        document.getElementById('days').textContent = days.toString().padStart(2, '0');
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        
+        // If countdown is finished
+        if (timeRemaining < 0) {
+            clearInterval(countdownInterval);
+            document.getElementById('countdown').innerHTML = '<div class="countdown-finished">গণভোট শুরু হয়েছে!</div>';
+        }
+    }, 1000);
+}
+
+// Navigation between sections
+function initializeNavigation() {
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('.section');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get the target section ID from href
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            // Update active nav link
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Hide all sections and show target
+            sections.forEach(section => section.classList.remove('active'));
+            targetSection.classList.add('active');
+            
+            // Smooth scroll to section
+            window.scrollTo({
+                top: targetSection.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+    });
+}
+
+// Decision Tool Logic
+function initializeDecisionTool() {
+    const answerButtons = document.querySelectorAll('.answer-btn');
+    const resetButton = document.getElementById('reset-btn');
+    const calculateButton = document.getElementById('calculate-btn');
+    const shareButtons = document.querySelectorAll('.share-btn');
+    
+    // Store user answers
+    let userAnswers = new Array(10).fill(null);
+    
+    // Add click event to answer buttons
+    answerButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const questionIndex = parseInt(this.getAttribute('data-question')) - 1;
+            const answerValue = parseFloat(this.getAttribute('data-value'));
+            
+            // Remove selected class from all buttons for this question
+            const questionButtons = document.querySelectorAll(`.answer-btn[data-question="${questionIndex + 1}"]`);
+            questionButtons.forEach(btn => btn.classList.remove('selected'));
+            
+            // Add selected class to clicked button
+            this.classList.add('selected');
+            
+            // Store the answer
+            userAnswers[questionIndex] = answerValue;
+            
+            // Enable calculate button if at least one question is answered
+            const answeredQuestions = userAnswers.filter(answer => answer !== null).length;
+            if (answeredQuestions > 0) {
+                calculateButton.disabled = false;
+            }
+        });
+    });
+    
+    // Reset button functionality
+    resetButton.addEventListener('click', function() {
+        // Clear all selected answers
+        answerButtons.forEach(button => {
+            button.classList.remove('selected');
+        });
+        
+        // Reset user answers
+        userAnswers = new Array(10).fill(null);
+        
+        // Reset decision display
+        document.getElementById('yes-percentage').textContent = '0%';
+        document.getElementById('yes-fill').style.width = '0%';
+        document.getElementById('decision-text').textContent = 'প্রশ্নের উত্তর দিন এবং আপনার সিদ্ধান্ত দেখুন';
+        document.getElementById('yes-support').textContent = 'আপনি 0% হ্যাঁ ভোটের পক্ষে';
+        document.getElementById('no-support').textContent = 'আপনি 0% না ভোটের পক্ষে';
+        document.getElementById('recommendation-text').textContent = 'উপরের সবগুলো প্রশ্নের উত্তর দিন এবং আপনার সিদ্ধান্ত দেখুন';
+        
+        // Disable calculate button
+        calculateButton.disabled = true;
+    });
+    
+    // Calculate button functionality
+    calculateButton.addEventListener('click', function() {
+        // Filter out unanswered questions
+        const answered = userAnswers.filter(answer => answer !== null);
+        
+        if (answered.length === 0) {
+            alert('দয়া করে কমপক্ষে একটি প্রশ্নের উত্তর দিন।');
+            return;
+        }
+        
+        // Calculate weighted average (1 for yes, 0.5 for unsure, 0 for no)
+        const totalWeight = answered.reduce((sum, value) => sum + value, 0);
+        const maxPossible = answered.length; // If all answers were "yes"
+        const yesPercentage = Math.round((totalWeight / maxPossible) * 100);
+        const noPercentage = 100 - yesPercentage;
+        
+        // Update decision meter
+        document.getElementById('yes-percentage').textContent = `${yesPercentage}%`;
+        document.getElementById('yes-fill').style.width = `${yesPercentage}%`;
+        
+        // Update decision text
+        document.getElementById('decision-text').textContent = `প্রশ্নের উত্তর দিন/আপনি ${yesPercentage}% হ্যাঁ ভোটের পক্ষে/আপনি ${noPercentage}% না ভোটের পক্ষে`;
+        document.getElementById('yes-support').textContent = `আপনি ${yesPercentage}% হ্যাঁ ভোটের পক্ষে`;
+        document.getElementById('no-support').textContent = `আপনি ${noPercentage}% না ভোটের পক্ষে`;
+        
+        // Update recommendation based on answers
+        let recommendationText = '';
+        
+        // Check if all questions answered
+        const allAnswered = userAnswers.every(answer => answer !== null);
+        
+        if (!allAnswered) {
+            recommendationText = 'কিছু প্রশ্নের উত্তর দিন এবং আপনার সিদ্ধান্ত দেখুন';
+        } else {
+            // Count different types of answers
+            const yesCount = userAnswers.filter(answer => answer === 1).length;
+            const noCount = userAnswers.filter(answer => answer === 0).length;
+            const unsureCount = userAnswers.filter(answer => answer === 0.5).length;
+            
+            if (yesCount === 10) {
+                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি গণভোটের প্রস্তাবনাগুলোর পক্ষে। আপনার জন্য "হ্যাঁ" ভোট উপযুক্ত হবে।';
+            } else if (noCount === 10) {
+                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি গণভোটের প্রস্তাবনাগুলোর বিপক্ষে। আপনার জন্য "না" ভোট উপযুক্ত হবে।';
+            } else if (yesCount > 0 && noCount > 0) {
+                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি কিছু বিষয়ে সমর্থন এবং কিছু বিষয়ে বিরোধিতা করেছেন। আপনি চাইলে আরও তথ্য সংগ্রহ করে সিদ্ধান্ত নিতে পারেন।';
+            } else if (yesCount > 0 && unsureCount > 0 && noCount === 0) {
+                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি বেশিরভাগ বিষয়ে সমর্থন করেছেন, তবে কিছু বিষয়ে নিশ্চিত নন। আপনি "হ্যাঁ" ভোটের দিকে ঝুঁকছেন।';
+            } else if (noCount > 0 && unsureCount > 0 && yesCount === 0) {
+                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি বেশিরভাগ বিষয়ে বিরোধিতা করেছেন, তবে কিছু বিষয়ে নিশ্চিত নন। আপনি "না" ভোটের দিকে ঝুঁকছেন।';
+            } else {
+                recommendationText = 'আপনার উত্তরগুলো বিশ্লেষণ করে দেখা যাচ্ছে যে আপনি কিছু বিষয়ে সমর্থন এবং কিছু বিষয়ে বিরোধিতা করেছেন। আপনি চাইলে আরও তথ্য সংগ্রহ করে সিদ্ধান্ত নিতে পারেন।';
+            }
+        }
+        
+        document.getElementById('recommendation-text').textContent = recommendationText;
+        
+        // Scroll to results section
+        document.querySelector('.results-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+    
+    // Share buttons functionality
+    shareButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const yesPercentage = document.getElementById('yes-percentage').textContent;
+            const platform = this.classList[1].replace('-btn', '');
+            
+            let shareText = '';
+            let shareUrl = window.location.href;
+            
+            if (yesPercentage === '0%') {
+                shareText = 'আমি গণভোট ২০২৬ সম্পর্কে জানতে ওয়েবসাইটটি ব্যবহার করছি। এখানে আপনি গণভোটের প্রস্তাবনা সম্পর্কে জানতে এবং আপনার সিদ্ধান্ত নিতে পারবেন।';
+            } else {
+                shareText = `আমি গণভোট ২০২৬ সিদ্ধান্ত সহায়ক টুল ব্যবহার করে দেখেছি যে আমি ${yesPercentage} হ্যাঁ ভোটের পক্ষে। আপনি কী ভাবছেন? দেখুন: ${shareUrl}`;
+            }
+            
+            // Platform-specific sharing
+            if (platform === 'facebook') {
+                shareOnFacebook(shareText, shareUrl);
+            } else if (platform === 'twitter') {
+                shareOnTwitter(shareText, shareUrl);
+            } else if (platform === 'whatsapp') {
+                shareOnWhatsApp(shareText, shareUrl);
+            }
+        });
+    });
+}
+
+// Share functions
+function shareOnFacebook(text, url) {
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`;
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+}
+
+function shareOnTwitter(text, url) {
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+}
+
+function shareOnWhatsApp(text, url) {
+    const shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+}
+
+// FAQ Accordion
+function initializeFAQ() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const faqItem = this.parentElement;
+            faqItem.classList.toggle('active');
+        });
+    });
+}
+
+// Visitor Counter with localStorage
+function initializeVisitorCounter() {
+    // Get current count from localStorage or initialize
+    let visitorCount = localStorage.getItem('ganovoterVisitorCount');
+    
+    if (!visitorCount) {
+        // Start with a random number between 1500-2000
+        visitorCount = Math.floor(Math.random() * 500) + 1500;
+        localStorage.setItem('ganovoterVisitorCount', visitorCount);
+    } else {
+        // Increment by a random number between 1-10
+        visitorCount = parseInt(visitorCount) + Math.floor(Math.random() * 10) + 1;
+        localStorage.setItem('ganovoterVisitorCount', visitorCount);
+    }
+    
+    // Format number with Bengali-like formatting
+    const formattedCount = visitorCount.toLocaleString('bn-BD');
+    document.getElementById('visitor-count').textContent = formattedCount;
+    
+    // Update last update time
+    const now = new Date();
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    };
+    const banglaDate = now.toLocaleDateString('bn-BD', options);
+    document.getElementById('last-update').textContent = banglaDate;
+    
+    // Animate the counter
+    animateCounter('visitor-count', visitorCount);
+}
+
+// Animate counter function
+function animateCounter(elementId, finalValue) {
+    const element = document.getElementById(elementId);
+    const currentValue = parseInt(element.textContent.replace(/,/g, ''));
+    const duration = 2000; // 2 seconds
+    const increment = (finalValue - currentValue) / (duration / 16); // 60fps
+    
+    let current = currentValue;
+    const timer = setInterval(() => {
+        current += increment;
+        if ((increment > 0 && current >= finalValue) || (increment < 0 && current <= finalValue)) {
+            current = finalValue;
+            clearInterval(timer);
+        }
+        element.textContent = Math.floor(current).toLocaleString('bn-BD');
+    }, 16);
+}
+
+// Document Preview Buttons
+function initializeDocumentPreview() {
+    const previewButtons = document.querySelectorAll('.preview-btn');
+    
+    previewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const documentCard = this.closest('.document-card');
+            const documentTitle = documentCard.querySelector('h3').textContent;
+            
+            // Create preview modal
+            const modal = document.createElement('div');
+            modal.className = 'document-preview-modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>${documentTitle} - প্রিভিউ</h3>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>এই ডকুমেন্টটি পিডিএফ ফর্ম্যাটে উপলব্ধ। সম্পূর্ণ ডকুমেন্ট ডাউনলোড করতে উপরের "PDF ডাউনলোড" বাটনে ক্লিক করুন।</p>
+                        <div class="preview-placeholder">
+                            <i class="fas fa-file-pdf"></i>
+                            <p>পিডিএফ প্রিভিউ এখানে প্রদর্শিত হবে</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-close">বন্ধ করুন</button>
+                    </div>
+                </div>
+            `;
+            
+            // Add modal to body
+            document.body.appendChild(modal);
+            
+            // Add modal styles
+            const modalStyle = document.createElement('style');
+            modalStyle.textContent = `
+                .document-preview-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2000;
+                    animation: fadeIn 0.3s ease;
+                }
+                
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                
+                .modal-content {
+                    background: white;
+                    border-radius: 15px;
+                    width: 90%;
+                    max-width: 600px;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    animation: slideUp 0.3s ease;
+                }
+                
+                @keyframes slideUp {
+                    from { transform: translateY(50px); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
+                
+                .modal-header {
+                    background: linear-gradient(135deg, var(--bd-green), var(--bd-dark-green));
+                    color: white;
+                    padding: 20px;
+                    border-radius: 15px 15px 0 0;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                
+                .modal-header h3 {
+                    margin: 0;
+                    font-size: 1.4rem;
+                    color: white;
+                }
+                
+                .close-modal {
+                    background: none;
+                    border: none;
+                    color: white;
+                    font-size: 2rem;
+                    cursor: pointer;
+                    line-height: 1;
+                }
+                
+                .modal-body {
+                    padding: 30px;
+                }
+                
+                .modal-body p {
+                    margin-bottom: 20px;
+                    line-height: 1.6;
+                }
+                
+                .preview-placeholder {
+                    background: #f8f9fa;
+                    border: 2px dashed #dee2e6;
+                    border-radius: 10px;
+                    padding: 40px;
+                    text-align: center;
+                    color: #6c757d;
+                }
+                
+                .preview-placeholder i {
+                    font-size: 4rem;
+                    color: var(--bd-red);
+                    margin-bottom: 15px;
+                }
+                
+                .modal-footer {
+                    padding: 20px;
+                    text-align: right;
+                    border-top: 1px solid #dee2e6;
+                }
+                
+                .btn-close {
+                    background: linear-gradient(135deg, var(--bd-red), var(--bd-light-red));
+                    color: white;
+                    border: none;
+                    padding: 10px 25px;
+                    border-radius: 8px;
+                    font-family: inherit;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+                
+                .btn-close:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
+            `;
+            
+            document.head.appendChild(modalStyle);
+            
+            // Close modal functionality
+            const closeModal = () => {
+                modal.remove();
+                modalStyle.remove();
+            };
+            
+            modal.querySelector('.close-modal').addEventListener('click', closeModal);
+            modal.querySelector('.btn-close').addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    });
+}
+
+// Add CSS for countdown finished state
+const countdownStyle = document.createElement('style');
+countdownStyle.textContent = `
+    .countdown-finished {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--bd-green);
+        text-align: center;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        border: 2px solid var(--bd-gold);
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+`;
+document.head.appendChild(countdownStyle);
+    </script>
+</body>
+</html>
